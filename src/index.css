@@ -1,0 +1,133 @@
+/* ===== Theme tokens: change colors here ===== */
+:root,
+[data-theme='dark'] {
+  --bg: #0a0e14;
+  --bg-alt: #0e131b;
+  --surface: #131a24;
+  --border: #243040;
+  --text: #d6dde8;
+  --muted: #8794a8;
+  --accent: #ffb800;
+  --accent-ink: #1a1200;
+  --accent-soft: rgba(255, 184, 0, 0.12);
+  --glow: 0 0 0 1px var(--accent), 0 8px 30px rgba(255, 184, 0, 0.18);
+  --nav-bg: rgba(10, 14, 20, 0.72);
+  --grid-line: rgba(255, 184, 0, 0.06);
+}
+
+[data-theme='light'] {
+  --bg: #f3f5f8;
+  --bg-alt: #e9edf3;
+  --surface: #ffffff;
+  --border: #cfd7e3;
+  --text: #1c2430;
+  --muted: #55627a;
+  --accent: #9a5b00;
+  --accent-ink: #ffffff;
+  --accent-soft: rgba(154, 91, 0, 0.1);
+  --glow: 0 0 0 1px var(--accent), 0 8px 24px rgba(154, 91, 0, 0.16);
+  --nav-bg: rgba(243, 245, 248, 0.78);
+  --grid-line: rgba(28, 36, 48, 0.06);
+}
+
+:root {
+  --mono: 'JetBrains Mono', 'Fira Code', ui-monospace, Menlo, Consolas, monospace;
+  --sans: 'Inter', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --nav-h: 64px;
+  --radius: 10px;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { scroll-behavior: smooth; scroll-padding-top: var(--nav-h); }
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--sans);
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Smooth color switching on theme change */
+nav, section, footer, a, button, input, textarea, .card, .chip {
+  transition-property: background-color, color, border-color, box-shadow, transform, opacity;
+  transition-duration: 0.3s;
+  transition-timing-function: ease;
+}
+
+a { color: inherit; text-decoration: none; }
+ul { list-style: none; }
+img, svg { max-width: 100%; }
+
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 4px; }
+
+.container { width: min(1120px, 100% - 2.5rem); margin-inline: auto; }
+
+.section { padding: 6rem 0; }
+.section--alt { background: var(--bg-alt); }
+
+.sec-title {
+  font-family: var(--mono);
+  font-size: clamp(1.4rem, 3vw, 1.9rem);
+  font-weight: 700;
+  margin-bottom: 2.5rem;
+  display: flex;
+  align-items: baseline;
+  gap: 0.6rem;
+  flex-wrap: wrap;
+}
+.sec-title .idx { color: var(--accent); font-weight: 500; }
+
+/* ===== Buttons ===== */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-family: var(--mono);
+  font-size: 0.9rem;
+  font-weight: 500;
+  padding: 0.75rem 1.3rem;
+  border-radius: var(--radius);
+  border: 1px solid var(--accent);
+  background: transparent;
+  color: var(--accent);
+  cursor: pointer;
+}
+.btn:hover { transform: scale(1.04); box-shadow: var(--glow); }
+.btn:active { transform: scale(0.97); }
+.btn--solid { background: var(--accent); color: var(--accent-ink); font-weight: 700; }
+
+/* ===== Chips ===== */
+.chip {
+  display: inline-block;
+  font-family: var(--mono);
+  font-size: 0.78rem;
+  padding: 0.25rem 0.7rem;
+  border-radius: 999px;
+  border: 1px solid var(--border);
+  background: var(--accent-soft);
+  color: var(--accent);
+}
+.chip:hover { transform: scale(1.07); }
+
+/* ===== Cards ===== */
+.card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 1.5rem;
+}
+
+/* ===== Scroll reveal ===== */
+.reveal { opacity: 0; transform: translateY(24px); transition: opacity 0.7s ease, transform 0.7s ease; }
+.reveal.in { opacity: 1; transform: none; }
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; }
+  .reveal { opacity: 1; transform: none; }
+}
+
+@media (max-width: 768px) { .section { padding: 4.5rem 0; } }

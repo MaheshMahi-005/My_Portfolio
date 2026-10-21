@@ -1,0 +1,9 @@
+.intern { list-style: none; position: relative; padding-left: 1.75rem; display: grid; gap: 1.5rem; }
+.intern::before { content: ''; position: absolute; left: 5px; top: 8px; bottom: 8px; width: 2px; background: var(--border); }
+.intern__item { position: relative; }
+.intern__item::before { content: ''; position: absolute; left: -1.75rem; top: 1.7rem; width: 12px; height: 12px; border-radius: 50%; background: var(--accent); box-shadow: 0 0 0 4px var(--accent-soft); }
+.intern__item .card:hover { border-color: var(--accent); box-shadow: var(--glow); }
+.intern__period { font-family: var(--mono); font-size: 0.8rem; color: var(--accent); }
+.intern__role { font-family: var(--mono); font-size: 1.1rem; margin: 0.25rem 0; }
+.intern__org { color: var(--muted); font-size: 0.9rem; margin-bottom: 0.6rem; }
+.intern__desc { color: var(--muted); max-width: 70ch; }

@@ -1,0 +1,38 @@
+.nav { position: fixed; inset: 0 0 auto 0; height: var(--nav-h); z-index: 100; border-bottom: 1px solid transparent; }
+.nav--scrolled { background: var(--nav-bg); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); border-bottom-color: var(--border); }
+.nav__inner { height: 100%; display: flex; align-items: center; justify-content: space-between; gap: 1rem; }
+.nav__logo { font-family: var(--mono); font-weight: 700; font-size: 1.05rem; }
+.nav__logo span { color: var(--accent); }
+
+.nav__links { display: flex; gap: 1.4rem; margin-left: auto; }
+.nav__links a { position: relative; font-family: var(--mono); font-size: 0.85rem; color: var(--muted); padding: 0.3rem 0; }
+.nav__links a::after { content: ''; position: absolute; left: 0; bottom: 0; height: 2px; width: 100%; background: var(--accent); transform: scaleX(0); transform-origin: left; transition: transform 0.3s ease; }
+.nav__links a:hover, .nav__links a.active { color: var(--accent); }
+.nav__links a:hover::after, .nav__links a.active::after { transform: scaleX(1); }
+
+.nav__actions { display: flex; align-items: center; gap: 0.5rem; }
+
+.theme-toggle { position: relative; width: 40px; height: 40px; border-radius: 50%; border: 1px solid var(--border); background: transparent; color: var(--accent); cursor: pointer; }
+.theme-toggle:hover { box-shadow: var(--glow); }
+.theme-toggle__icon { position: absolute; inset: 0; display: grid; place-items: center; opacity: 0; transform: rotate(-90deg) scale(0.5); transition: opacity 0.3s ease, transform 0.4s ease; }
+.theme-toggle__icon.show { opacity: 1; transform: none; }
+
+.hamburger { display: none; width: 40px; height: 40px; border: 1px solid var(--border); border-radius: 8px; background: transparent; cursor: pointer; flex-direction: column; justify-content: center; align-items: center; gap: 5px; }
+.hamburger span { display: block; width: 18px; height: 2px; background: var(--text); transition: transform 0.3s ease, opacity 0.3s ease; }
+.hamburger.is-open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+.hamburger.is-open span:nth-child(2) { opacity: 0; }
+.hamburger.is-open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+@media (max-width: 900px) {
+  .hamburger { display: flex; }
+  .nav__links {
+    position: fixed; top: var(--nav-h); left: 0; right: 0; flex-direction: column; gap: 0;
+    background: var(--bg); border-bottom: 1px solid var(--border); padding: 0.5rem 1.25rem 1rem;
+    opacity: 0; transform: translateY(-12px); pointer-events: none; visibility: hidden;
+    transition: opacity 0.3s ease, transform 0.3s ease, visibility 0.3s;
+  }
+  .nav__links.is-open { opacity: 1; transform: none; pointer-events: auto; visibility: visible; }
+  .nav__links a { display: block; padding: 0.85rem 0; font-size: 0.95rem; }
+  .nav__links a::after { display: none; }
+  .nav__links a.active { padding-left: 0.6rem; border-left: 2px solid var(--accent); }
+}
